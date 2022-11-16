@@ -58,22 +58,9 @@ let move = 0
 let run = 0
 run = 0
 basic.forever(function () {
+    basic.clearScreen()
+    move_ww1()
     if (run == 1) {
-        basic.clearScreen()
-        move_ww1()
-        if (start_X == egg_x && start_Y == egg_y) {
-            list_X[0] = start_X
-            list_Y[0] = start_Y
-            egg_x = randint(0, 4)
-            egg_y = randint(0, 4)
-            score += 1
-            what_time_to_move_one_time += -70
-        } else {
-            list_X[0] = start_X
-            list_Y[0] = start_Y
-            list_X.pop()
-            list_Y.pop()
-        }
         if (start_X < 0 && start_X > 4) {
             run = 0
             basic.showNumber(score)
@@ -81,11 +68,24 @@ basic.forever(function () {
             run = 0
             basic.showNumber(score)
         }
-        for (let index = 0; index <= list_X.length - 1; index++) {
-            led.plotBrightness(list_X[index], list_Y[index], 255)
-        }
-        led.plotBrightness(egg_x, egg_y, 47)
-        led.plotBrightness(start_X, start_Y, 255)
-        basic.pause(what_time_to_move_one_time)
     }
+    if (start_X == egg_x && start_Y == egg_y) {
+        list_X[0] = start_X
+        list_Y[0] = start_Y
+        egg_x = randint(0, 4)
+        egg_y = randint(0, 4)
+        score += 1
+        what_time_to_move_one_time += -70
+    } else {
+        list_X[0] = start_X
+        list_Y[0] = start_Y
+        list_X.pop()
+        list_Y.pop()
+    }
+    for (let index = 0; index <= list_X.length - 1; index++) {
+        led.plotBrightness(list_X[index], list_Y[index], 255)
+    }
+    led.plotBrightness(egg_x, egg_y, 47)
+    led.plotBrightness(start_X, start_Y, 255)
+    basic.pause(what_time_to_move_one_time)
 })
