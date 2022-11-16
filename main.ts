@@ -27,6 +27,7 @@ input.onButtonPressed(Button.A, function () {
 input.onButtonPressed(Button.AB, function () {
     run = 1
     move = 0
+    what_time_to_move_one_time = 1000
     move_X = 1
     move_Y = 0
     start_X = 0
@@ -36,7 +37,6 @@ input.onButtonPressed(Button.AB, function () {
     list_X = [start_X]
     list_Y = [start_Y]
     score = 0
-    what_time_to_move_one_time = 1000
 })
 input.onButtonPressed(Button.B, function () {
     move += 1
@@ -44,12 +44,12 @@ input.onButtonPressed(Button.B, function () {
         move = 0
     }
 })
-let what_time_to_move_one_time = 0
 let score = 0
 let list_Y: number[] = []
 let list_X: number[] = []
 let egg_x = 0
 let egg_y = 0
+let what_time_to_move_one_time = 0
 let start_Y = 0
 let start_X = 0
 let move_Y = 0
@@ -61,10 +61,10 @@ basic.forever(function () {
     basic.clearScreen()
     move_ww1()
     if (run == 1) {
-        if (start_X < 0 && start_X > 4) {
+        if (start_X < 0 || start_X > 4) {
             run = 0
             basic.showNumber(score)
-        } else if (start_Y < 0 && start_Y > 4) {
+        } else if (start_Y < 0 || start_Y > 4) {
             run = 0
             basic.showNumber(score)
         }
